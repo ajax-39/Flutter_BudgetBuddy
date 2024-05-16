@@ -22,6 +22,7 @@ class _NewExpenseState extends State<NewExpense> {
   //#2 method to input value
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+  //=====================================================
 
   //#date picker
   DateTime? _selectedDate;
@@ -54,6 +55,10 @@ class _NewExpenseState extends State<NewExpense> {
     _amountController.dispose();
     super.dispose();
   }
+  //=====================================================
+
+  //#value from dropdown menu
+  var _selectedCategory = Category.work;
 
   @override
   Widget build(context) {
@@ -110,14 +115,35 @@ class _NewExpenseState extends State<NewExpense> {
           ),
 
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              DropdownButton(
+                value: _selectedCategory,
+                items: Category.values
+                    .map(
+                      (category) => DropdownMenuItem(
+                        value: category,
+                        child: Text(
+                          category.name.toUpperCase(),
+                        ),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  if (value == null) return;
+
+                  setState(() {
+                    _selectedCategory = value;
+                  });
+                },
+              ),
+              const Spacer(),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
                 child: const Text('Cancel'),
               ),
-              const Spacer(),
               ElevatedButton(
                 onPressed: () {
                   print(_titleController.text);
