@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key});
@@ -19,6 +20,24 @@ class _NewExpenseState extends State<NewExpense> {
   //#2 method to input value
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+
+  //# date picker
+
+  void _presentDatePicker() {
+    final now = DateTime.now();
+    final firstData = DateTime(
+      now.year - 1,
+      now.month,
+      now.day,
+    );
+    showDatePicker(
+      context: context,
+      initialDate: now,
+      firstDate: firstData,
+      lastDate: now,
+    );
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -42,13 +61,35 @@ class _NewExpenseState extends State<NewExpense> {
             ),
           ),
 
-          TextField(
-            controller: _amountController,
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-              prefixText: '\$ ',
-              label: Text('Enter Amount'),
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _amountController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    prefixText: '\$ ',
+                    label: Text('Enter Amount'),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text('Selected Date'),
+                    IconButton(
+                      onPressed: _presentDatePicker,
+                      icon: const Icon(Icons.calendar_month),
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
 
           const SizedBox(
