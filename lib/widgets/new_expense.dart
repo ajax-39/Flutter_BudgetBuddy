@@ -110,6 +110,7 @@ class _NewExpenseState extends State<NewExpense> {
         children: [
           //input the data
           TextField(
+            style: const TextStyle(color: Colors.black),
             controller: _titleController,
             maxLength: 50,
             decoration: const InputDecoration(
@@ -121,6 +122,7 @@ class _NewExpenseState extends State<NewExpense> {
             children: [
               Expanded(
                 child: TextField(
+                  style: const TextStyle(color: Colors.black),
                   controller: _amountController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
@@ -163,6 +165,9 @@ class _NewExpenseState extends State<NewExpense> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               DropdownButton(
+                style: const TextStyle(
+                  color: Colors.black,
+                ),
                 value: _selectedCategory,
                 items: Category.values
                     .map(
@@ -188,6 +193,9 @@ class _NewExpenseState extends State<NewExpense> {
                   Navigator.pop(context);
                 },
                 child: const Text('Cancel'),
+              ),
+              const SizedBox(
+                width: 14,
               ),
               ElevatedButton(
                 onPressed: _submitExpense,
