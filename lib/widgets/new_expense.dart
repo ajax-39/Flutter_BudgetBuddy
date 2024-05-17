@@ -1,10 +1,11 @@
 import 'package:expense_tracker/models/expenses.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key});
+  const NewExpense({super.key, required this.onAddExpense});
+
+  final void Function(Expense expense) onAddExpense;
 
   @override
   State<NewExpense> createState() {
@@ -48,8 +49,18 @@ class _NewExpenseState extends State<NewExpense> {
           ],
         ),
       );
-
       return;
+    } else {
+      widget.onAddExpense(
+        Expense(
+          title: _titleController.text,
+          date: _selectedDate!,
+          amount: enteredAmount,
+          category: _selectedCategory,
+        ),
+      );
+
+      Navigator.pop(context);
     }
   }
 
@@ -94,7 +105,7 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
       child: Column(
         children: [
           //input the data
@@ -118,9 +129,11 @@ class _NewExpenseState extends State<NewExpense> {
                   ),
                 ),
               ),
+              //
               const SizedBox(
                 width: 16,
               ),
+              //
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -131,6 +144,7 @@ class _NewExpenseState extends State<NewExpense> {
                           ? 'No Date Selected'
                           : formatter.format(_selectedDate!),
                     ),
+                    //
                     IconButton(
                       onPressed: _presentDatePicker,
                       icon: const Icon(Icons.calendar_month),
