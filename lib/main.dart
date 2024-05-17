@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/widgets/expenses.dart';
 
+var kDarkColorScheme = ColorScheme.fromSeed(seedColor: Colors.black);
+
 void main() {
   runApp(
     MaterialApp(
       //setting up theme
 
+      //dark theme
+      darkTheme: ThemeData.dark(),
+
       theme: ThemeData().copyWith(
+        //backgroudn theme
         scaffoldBackgroundColor: const Color(0xFF9598ff),
 
         //app bar
@@ -16,7 +22,7 @@ void main() {
 
         //card theme
         cardTheme: const CardTheme().copyWith(
-          color: const Color(0xFFa9feff),
+          color: const Color(0xFFfec7c9),
           margin: const EdgeInsets.symmetric(
             horizontal: 12,
             vertical: 6,
@@ -26,7 +32,7 @@ void main() {
         //button theme
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF11d296),
+            backgroundColor: const Color(0xFF9598ff),
             foregroundColor: Colors.white,
           ),
         ),
@@ -42,6 +48,8 @@ void main() {
           ),
         ),
       ),
+
+      themeMode: ThemeMode.system,
 
       debugShowCheckedModeBanner: false,
 

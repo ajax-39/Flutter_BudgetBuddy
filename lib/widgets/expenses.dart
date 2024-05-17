@@ -1,3 +1,4 @@
+import 'package:expense_tracker/chart/chart.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expenses.dart';
@@ -22,14 +23,39 @@ class _ExpensesState extends State<Expenses> {
     ),
     Expense(
       title: 'Cinema',
-      amount: 20.15,
+      amount: 201,
       date: DateTime.now(),
       category: Category.leisure,
+    ),
+    Expense(
+      title: 'Travel to Home',
+      amount: 230,
+      date: DateTime.now(),
+      category: Category.travel,
+    ),
+    Expense(
+      title: 'Burger King',
+      amount: 419,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
+    Expense(
+      title: 'DSA Course',
+      amount: 600,
+      date: DateTime.now(),
+      category: Category.work,
+    ),
+    Expense(
+      title: 'Dominos',
+      amount: 300,
+      date: DateTime.now(),
+      category: Category.food,
     ),
   ];
 
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+      backgroundColor: const Color(0xFFfec7c9),
       isScrollControlled: true,
       context: context,
       builder: (ctx) => NewExpense(
@@ -86,7 +112,7 @@ class _ExpensesState extends State<Expenses> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ExpenseTracker'),
+        title: const Text('Budget Buddy'),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
@@ -100,6 +126,7 @@ class _ExpensesState extends State<Expenses> {
           const SizedBox(
             height: 10,
           ),
+          Chart(expenses: registerdExpenses),
           Expanded(
             child: mainContent,
           ),

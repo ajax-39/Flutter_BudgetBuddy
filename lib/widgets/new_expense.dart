@@ -114,7 +114,12 @@ class _NewExpenseState extends State<NewExpense> {
             controller: _titleController,
             maxLength: 50,
             decoration: const InputDecoration(
-              label: Text('Title'),
+              label: Text(
+                'Title',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
             ),
           ),
 
@@ -127,7 +132,12 @@ class _NewExpenseState extends State<NewExpense> {
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     prefixText: '\$ ',
-                    label: Text('Enter Amount'),
+                    label: Text(
+                      'Enter Amount',
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -145,6 +155,9 @@ class _NewExpenseState extends State<NewExpense> {
                       _selectedDate == null
                           ? 'No Date Selected'
                           : formatter.format(_selectedDate!),
+                      style: const TextStyle(
+                        color: Colors.black,
+                      ),
                     ),
                     //
                     IconButton(
