@@ -49,7 +49,7 @@ void main() {
         ),
       ),
 
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
 
       debugShowCheckedModeBanner: false,
 
