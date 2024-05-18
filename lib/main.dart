@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/widgets/expenses.dart';
+// import 'package:flutter/services.dart';
 
 var kDarkColorScheme = ColorScheme.fromSeed(seedColor: Colors.black);
 
 void main() {
+  //set the orientation
+  //lock in portrait
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  // ]).then((fn) {});
   runApp(
     MaterialApp(
       //setting up theme
@@ -32,9 +39,11 @@ void main() {
         //button theme
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF9598ff),
-            foregroundColor: Colors.white,
-          ),
+              backgroundColor: const Color(0xFF9598ff),
+              foregroundColor: Colors.white,
+              textStyle: TextStyle(
+                fontSize: 16,
+              )),
         ),
         textTheme: const TextTheme(
           titleLarge: TextStyle(
